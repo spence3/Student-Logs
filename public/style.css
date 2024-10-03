@@ -1,0 +1,118 @@
+/* TODO: make it look awesome. */
+/* TODO: make it responsive. */
+
+#uvuId {
+  display: none;
+}
+
+.size {
+  width: 550px;
+  height: 40px;
+}
+
+#lightTheme {
+  display: flex;
+  justify-content: right;
+  background-color: #000000; /* Primary blue color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 20px; /* Vertical and horizontal padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  outline: none; /* Remove default focus outline */
+}
+
+.light-mode {
+  /* background-image: url('uvuday.jpeg'); */
+  background-color: #a7a8aa;
+  color: #000000;
+}
+
+.dark-mode {
+  /* background-image: url('uvunight.jpg'); */
+  background-color: #000000;
+  color: #78be1f;
+}
+
+/* #main {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  padding-top: 5%;
+  font: 'raleway';
+} */
+
+/* #course {
+  appearance: none;
+  background-color: #a7a8aa;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  color: #333;
+  cursor: pointer;
+  width: 250px;
+  min-width: 250px;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+/* #label {
+  margin-top: 200px;
+  border-radius: 5px;
+  font-size: 30px;
+  width: 250px;
+} */
+
+/* textarea,
+input[type='text'] {
+  border: 1px solid #ccc;
+  background-color: #a7a8aa;
+  border-radius: 4px;
+  padding: 10px;
+  width: 250px;
+  min-width: 250px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 20px;
+} */
+
+/* #uvuIdDisplay {
+  margin: 0 0 10px 0;
+  padding-top: 20px; 
+  font-family: 'Arial', sans-serif; 
+  font-weight: bold;
+} */
+
+#error {
+  display: none;
+  align-items: center;
+  color: red;
+  width: 250px;
+  max-width: 250px;
+}
+
+/* .textLogs {
+  display: none;
+  list-style: none;
+  width: 250px;
+  max-width: 250px;
+} */
+
+/* #submit {
+  background-color: #a7a8aa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  outline: none;
+} */
+
+.textDates {
+  cursor: pointer;
+}
