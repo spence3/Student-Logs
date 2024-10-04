@@ -1,4 +1,3 @@
-
 var courseApiUrl = '/api/v1/courses'
 var logsApiUrl = '/api/vi/logs'
 
