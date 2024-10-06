@@ -1,19 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3000;
-
+const port = process.env.PORT || 8000
 app.use(express.static('public'));
-// Mock data for courses
-const courses = [
-  { id: 1, name: 'Course 1' },
-  { id: 2, name: 'Course 2' },
-  { id: 3, name: 'Course 3' }
-];
+const path = require('path')
+const courses = require('./routes/courses')
 
-// API endpoint to get courses
-app.get('/api/v1/courses', (req, res) => {
-  res.json(courses); // Respond with the courses array as JSON
-});
+
+//set up static folder
+app.use(express.static(path.join(__dirname,'public')))
+
+//routes
+app.use('/api/v1/courses', courses)
+
 
 // Start the server
 app.listen(port, () => {
