@@ -1,5 +1,5 @@
 var courseApiUrl = '/api/v1/courses'
-var logsApiUrl = '/api/vi/logs'
+var logsApiUrl = '/api/v1/logs'
 
 //load courses
 $(function () {
@@ -27,7 +27,8 @@ $(function () {
     selectedOption.value !== '' ? $('#uvuId').show() : $('#uvuId').hide();
   }
 
-  $('#submit').prop('disabled', true); //disable submit till uvuid input
+  //disable submit till uvuid input
+  $('#submit').prop('disabled', true); 
   function validateUVUId() {
     var uvuId = $('#uvuId').val();
     var regex = /^\d{8}$/;
@@ -46,6 +47,7 @@ $(function () {
     }
   }
 
+  //load logs when it matches correct ID
   function loadLogs(uvuId) {
     $.ajax({
       url: logsApiUrl,
