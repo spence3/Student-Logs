@@ -6,6 +6,10 @@ const path = require('path')
 const courses = require('./routes/courses')
 const logs = require('./routes/logs')
 
+//body parser middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 
 //set up static folder
 app.use(express.static(path.join(__dirname,'public')))

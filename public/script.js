@@ -48,7 +48,7 @@ $(function () {
   }
 
   //load logs when it matches correct ID
-  function loadLogs(uvuId) {
+  async function loadLogs(uvuId) {
     $.ajax({
       url: logsApiUrl,
       method: 'GET',
@@ -66,6 +66,7 @@ $(function () {
     });
   }
 
+  //display logs
   function createList(log) {
     var dateLi = $('<li></li>').addClass('list-group-item').text(log.date);
     var textLi = $('<li></li>').addClass('list-group-item').text(log.text);
@@ -76,20 +77,24 @@ $(function () {
     });
   }
 
-  function submitLog(event) {
+  //create log
+  async function submitLog(event) {
     event.preventDefault();
-    const logInput = $('#logInput').val();
-    if (logInput.value !== '') {
+    const text = $('#logInput').val();
+    const courseId = $('#course').val()
+    const uvuId = $('#uvuId').val()
+    if (text !== '') {
+      console.log(text)
       //jquery ajax
       $.ajax({
         url: logsApiUrl,
         contentType: 'application/json',
         method: 'POST',
         data: JSON.stringify({
-          courseId: $('#course').val(),
-          uvuId: $('#uvuId').val(),
+          courseId: courseId,
+          uvuId: uvuId,
           date: new Date().toISOString(),
-          text: logInput,
+          text: text,
         }),
         success: function () {
           alert('Successfully update log');
