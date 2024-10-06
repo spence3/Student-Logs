@@ -1,6 +1,7 @@
 var courseApiUrl = '/api/v1/courses'
 var logsApiUrl = '/api/vi/logs'
 
+//load courses
 $(function () {
   //jquery ajax
   function getCourses() {
