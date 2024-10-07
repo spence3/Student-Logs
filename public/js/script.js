@@ -1,3 +1,4 @@
+// @ts-check
 var courseApiUrl = '/api/v1/courses'
 var logsApiUrl = '/api/v1/logs'
 
@@ -23,6 +24,7 @@ $(function () {
 
   //textbox hides or displays based on whether course was selected or not
   function handleCourseChange() {
+    // @ts-ignore
     var selectedOption = $('#course')[0].options[$('#course')[0].selectedIndex];
     selectedOption.value !== '' ? $('#uvuId').show() : $('#uvuId').hide();
   }
@@ -35,6 +37,7 @@ $(function () {
     var submit = $('#submit');
     const error = $('#error');
 
+    // @ts-ignore
     if (regex.test(uvuId)) {
       submit.prop('disabled', false).css('background-color', '#275D38');
       error.hide();
@@ -54,6 +57,7 @@ $(function () {
       method: 'GET',
       success: function (logs) {
         var selectedOption =
+          // @ts-ignore
           $('#course')[0].options[$('#course')[0].selectedIndex];
         var uvuIdDisplay = $('#uvuIdDisplay');
         $.each(logs, function (i, log) {
@@ -67,7 +71,7 @@ $(function () {
   }
 
   //display logs
-  function createList(log) {
+  async function createList(log) {
     var dateLi = $('<li></li>').addClass('list-group-item').text(log.date);
     var textLi = $('<li></li>').addClass('list-group-item').text(log.text);
     var listItem = $('<li></li>').append(dateLi, textLi).appendTo($('ul'));
@@ -80,30 +84,34 @@ $(function () {
   //create log
   async function submitLog(event) {
     event.preventDefault();
-    const text = $('#logInput').val();
     const courseId = $('#course').val()
     const uvuId = $('#uvuId').val()
+    const date = formatDate(new Date().toISOString())
+    const text = $('#logInput').val();
     if (text !== '') {
-      console.log(text)
       //jquery ajax
-      $.ajax({
-        url: logsApiUrl,
-        contentType: 'application/json',
-        method: 'POST',
-        data: JSON.stringify({
-          courseId: courseId,
-          uvuId: uvuId,
-          date: new Date().toISOString(),
-          text: text,
-        }),
-        success: function () {
-          alert('Successfully update log');
-        },
-        error: function (xhr, status, error) {
-          alert('Error:', status, error);
-        },
-      });
-    } else {
+      try {
+        await $.ajax({
+          url: logsApiUrl,
+          contentType: 'application/json',
+          method: 'POST',
+          data: JSON.stringify({
+            courseId: courseId,
+            uvuId: uvuId,
+            date: date,
+            text: text,
+          }),
+          success: function () {
+            alert('Successfully update log');
+        }
+      })
+      loadLogs(uvuId)
+      } catch (error) {
+          // @ts-ignore
+          alert('Error:', error);
+      };
+    } 
+    else {
       alert('Log cannont be empty');
     }
   }
@@ -127,6 +135,7 @@ $(function () {
     updateThemeButton(newTheme);
   }
 
+  //update theme button based on current theme
   function updateThemeButton(theme) {
     var toggleButton = $('#lightTheme');
     if (theme === 'light-mode') {
@@ -144,6 +153,28 @@ $(function () {
     const storedTheme = localStorage.getItem('theme') || 'light-mode';
     document.body.classList.add(storedTheme);
     updateThemeButton(storedTheme);
+  }
+
+  //format date (mm/dd/yyyy, time)
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+  
+    // Extract date components
+    const day = date.getDate();
+    const month = date.getMonth() + 1; 
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+  
+    // Determine AM/PM suffix
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    const formattedHours = hours % 12 || 12; 
+    const formattedMinutes = String(minutes).padStart(2, '0'); 
+  
+    // Construct the formatted date string
+    return `${month}/${day}/${year}, ${formattedHours}:${formattedMinutes}:${seconds} ${ampm}`;
   }
 
   //initial setup

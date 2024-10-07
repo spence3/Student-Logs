@@ -18,11 +18,11 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use('/api/v1/courses', courses)
 app.use('/api/v1/logs', logs)
 
+//404 page
 app.all('/*', (req, res) =>{
   res.status(404).send('<h1 style="color:red; text-align:center;">404 Page not found!</h1>');
 
 })
-
 
 // Start the server
 app.listen(port, () => {

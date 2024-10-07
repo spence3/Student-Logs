@@ -19,12 +19,12 @@ const getLogs = (req, res, next) => {
 // @route    POST /api/v1/logs
 const createLog = (req, res, next) =>{
     console.log('called')
-    const {courseId, uvuId ,text, } = req.body
+    const {courseId, uvuId, date,text} = req.body
     console.log(uvuId)
     const newLog = {
         courseId: courseId,
         uvuId: uvuId,
-        date: new Date().toISOString(),
+        date: date,
         text: text
     }
     
