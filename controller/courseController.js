@@ -3,6 +3,8 @@ var fs = require('fs')
 var courses = require('../db.json')
 courses = courses.courses
 
+// @desc     get all courses
+// @route    GET /api/v1/courses
 const getCourses = (req, res, next) => {
     const limit = parseInt(req.query.limit)
     if(!isNaN(limit) && limit > 0){
