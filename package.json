@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "node --watch server db.json --routes routes.json"
+    "server": "node --watch server"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.31",
