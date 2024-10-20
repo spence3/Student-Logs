@@ -6,4 +6,5 @@ const {getCourses} = require('../controller/courseController')
 router.get('/', getCourses)
 
 
+
 module.exports = router

@@ -1,11 +1,14 @@
+//env
 require('dotenv').config();
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose')
 const port = process.env.PORT || 8000
 const username = process.env.USERNAME
 const password = process.env.PASSWORD
+//express and mongoose
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose')
 app.use(express.static('public'));
+//paths to folders
 const path = require('path')
 const courses = require('./routes/courses')
 const logs = require('./routes/logs')
@@ -28,7 +31,7 @@ app.all('/*', (req, res) =>{
 
 })
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.ylg7v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.ylg7v.mongodb.net/student_logs?retryWrites=true&w=majority&appName=Cluster0`)
   .then(() => {
     console.log('connected to database!')
   })
