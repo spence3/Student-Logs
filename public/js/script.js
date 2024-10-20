@@ -1,4 +1,3 @@
-// @ts-check
 var courseApiUrl = '/api/v1/courses'
 var logsApiUrl = '/api/v1/logs'
 
