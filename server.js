@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose')
 const port = process.env.PORT || 8000
+const username = process.env.USERNAME
+const password = process.env.PASSWORD
 app.use(express.static('public'));
 const path = require('path')
 const courses = require('./routes/courses')
@@ -24,7 +28,16 @@ app.all('/*', (req, res) =>{
 
 })
 
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.ylg7v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+  .then(() => {
+    console.log('connected to database!')
+  })
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    }); 
+  })
+  .catch(() => {
+    console.log('connection failed')
+  })
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
